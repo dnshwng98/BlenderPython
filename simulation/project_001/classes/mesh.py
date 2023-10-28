@@ -1,5 +1,5 @@
 import bpy
-from simulation.project_001.classes.animation import Animation
+from animation import Animation
 
 class Mesh:
     def __init__(self, location, rotation, scale, material_name):
