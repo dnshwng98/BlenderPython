@@ -2,7 +2,6 @@ import bpy
 from animation import Animation
 from material import Material
 
-
 class Mesh:
     def __init__(self, location, rotation, scale, material_name):
         self.location = location
