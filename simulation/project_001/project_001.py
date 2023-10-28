@@ -1,7 +1,10 @@
-import bpy, math, random
-from simulation.project_001.classes.camera import Camera
-from simulation.project_001.classes.light import Point
-from simulation.project_001.classes.mesh import Plane, Cube, Sphere
+import bpy, math, random, sys
+
+sys.path.insert(0, "C:\Projects\Python\BlenderPython\simulation")
+
+from project_001.classes.camera import Camera
+from project_001.classes.light import Point
+from project_001.classes.mesh import Plane, Cube, Sphere
 
     
 # Deleting all objects in the scene.
