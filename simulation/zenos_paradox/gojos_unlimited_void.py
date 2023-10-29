@@ -65,7 +65,7 @@ cube_a.update_material_base_color((50, 50, 0, 1))
 data_paths = [{"orientation": ("location", "rotation_euler")}]
 cube_a.insert_keyframe(data_paths, 0)
 
-cube_b = Cube("CubeB", 1, 10, (0, .2, .1), (0, 0, 0), (.1, .1, .1))
+cube_b = Cube("CubeB", 1, 10, (0, 0, .1), (0, 0, 0), (.1, .1, .1))
 cube_b.update_material_base_color((50, 0, 0, 1))
 cube_b.insert_keyframe(data_paths, 0)
 
@@ -74,8 +74,8 @@ for index in range(1, 5):
     # Calculating Particle B's time to approach Particle A's position
     cube_a_dimension = bpy.data.objects[cube_a.name].dimensions
     cube_b_dimension = bpy.data.objects[cube_b.name].dimensions
-    cube_b_time = (cube_a.location[0] - cube_b.location[0]) / cube_b.speed
-    cube_b.location = (float(f"{cube_a.location[0]:.4f}"), .2, .1)
+    cube_b_time = ((cube_a.location[0] - cube_a_dimension[0] / 2) - (cube_b.location[0] + cube_b_dimension[0] / 2)) / cube_b.speed
+    cube_b.location = (float(f"{cube_a.location[0] - cube_a_dimension[0] / 2 - cube_b_dimension[0] / 2:.4f}"), 0, .1)
     cube_b.rotation = (math.radians(720) * index, 0, 0)
     cube_b.update_state()
     cube_b.insert_keyframe(data_paths, index * 37.5)
