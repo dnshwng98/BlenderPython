@@ -60,20 +60,22 @@ ground_a = Plane("GroundA", 30, 0, (0, 0, 0), (ground_a_x_radians, 0, 0), (1, 1,
 ground_a.update_material_base_color((0.793802, 0.125434, 0.394829, 1))
 
 # Defining particles with initial position(in metric units)
-cube_a = Cube("CubeA", 1, 1, (10, 0, .1), (0, 0, 0), (.198, .198, .198))
+cube_a = Cube("CubeA", 1, 1, (10.05, 0, .1), (0, 0, 0), (.1, .1, .1))
 cube_a.update_material_base_color((50, 50, 0, 1))
 data_paths = [{"orientation": ("location", "rotation_euler")}]
 cube_a.insert_keyframe(data_paths, 0)
 
-cube_b = Cube("CubeB", 1, 10, (0, .1, .1), (0, 0, 0), (.198, .198, .198))
+cube_b = Cube("CubeB", 1, 10, (0, 0, .1), (0, 0, 0), (.1, .1, .1))
 cube_b.update_material_base_color((50, 0, 0, 1))
 cube_b.insert_keyframe(data_paths, 0)
 
 for index in range(1, 5):
     # Phase 1.
     # Calculating Particle B's time to approach Particle A's position
-    cube_b_time = (cube_a.location[0] - cube_b.location[0]) / cube_b.speed
-    cube_b.location = (float(f"{cube_a.location[0]:.4f}"), .2, .1)
+    cube_a_dimension = bpy.data.objects[cube_a.name].dimensions
+    cube_b_dimension = bpy.data.objects[cube_b.name].dimensions
+    cube_b_time = ((cube_a.location[0] - cube_a_dimension[0] / 2) - (cube_b.location[0] + cube_b_dimension[0] / 2)) / cube_b.speed
+    cube_b.location = (float(f"{cube_a.location[0] - cube_a_dimension[0] / 2 - cube_b_dimension[0] / 2:.4f}"), 0, .1)
     cube_b.rotation = (math.radians(720) * index, 0, 0)
     cube_b.update_state()
     cube_b.insert_keyframe(data_paths, index * 37.5)
