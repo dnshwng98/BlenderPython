@@ -1,6 +1,7 @@
-import bpy, math, random, sys
-
+import sys
 sys.path.insert(0, "C:\Projects\Python\BlenderPython\simulation")
+
+import bpy, math, random
 
 from project_001.classes.camera import Camera
 from project_001.classes.light import Point
